@@ -1,13 +1,21 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 ##this api was the one we used in class
 ##for this assignment I think this would suffice, for the project we are using django
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-articles = ["Article324"]
-users = ["Article324"]
-notes = [""]
+articles = []
+users = []
+notes = []
 
 @app.get("/get-message")
 async def read_root():
